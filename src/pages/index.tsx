@@ -47,11 +47,18 @@ export default function Home() {
           slidesPerView={5}
           slidesPerGroup={3}
           slidesPerGroupAuto={true}
-          className="mx-auto my-auto h-[573px] shrink border-2 border-black"
+          className="mx-auto my-auto h-[573px] "
         >
           {data?.map((photo) => (
-            <SwiperSlide onClick={() => setSelectedPhoto(photo)} key={photo.id} className="hover:cursor-pointer hover:border-2 hover:border-sky-300">
+            <SwiperSlide
+              onClick={() => setSelectedPhoto(photo)}
+              key={photo.id}
+              className="hover:cursor-pointer"
+            >
               <Image
+                className={`hover:border-2 hover:border-sky-300 ${
+                  selectedPhoto?.id === photo.id && "border-2 border-black"
+                }`}
                 src={photo.url}
                 alt={photo.title}
                 width={100}
@@ -60,14 +67,14 @@ export default function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="relative h-[600px] w-[600px] border-2 border-black">
+        <div className="relative h-[600px] w-[600px]">
           {selectedPhoto && (
             <Image
               src={selectedPhoto.url}
               alt={selectedPhoto.title}
               sizes="(max-width: 768px) 600px, (max-width: 1200px) 600px, 900px"
               quality={100}
-              fill={true}
+              fill
             />
           )}
         </div>
